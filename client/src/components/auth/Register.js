@@ -2,9 +2,10 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -23,7 +24,7 @@ const Register = ({ setAlert }) => {
         if (password !== password2) {
             setAlert('Passwords do not match', 'danger');
         } else {
-            console.log('Success');
+            register({ name, email, password });
         }
     };
 
@@ -41,7 +42,6 @@ const Register = ({ setAlert }) => {
                         name='name'
                         value={name}
                         onChange={(e) => onChange(e)}
-                        required
                     />
                 </div>
                 <div className='form-group'>
@@ -51,7 +51,6 @@ const Register = ({ setAlert }) => {
                         name='email'
                         value={email}
                         onChange={(e) => onChange(e)}
-                        required
                     />
                     <small className='form-text'>
                         This site uses Gravatar so if you want a profile image,
@@ -63,10 +62,8 @@ const Register = ({ setAlert }) => {
                         type='password'
                         placeholder='Password'
                         name='password'
-                        minLength='6'
                         value={password}
                         onChange={(e) => onChange(e)}
-                        required
                     />
                 </div>
                 <div className='form-group'>
@@ -74,10 +71,8 @@ const Register = ({ setAlert }) => {
                         type='password'
                         placeholder='Confirm Password'
                         name='password2'
-                        minLength='6'
                         value={password2}
                         onChange={(e) => onChange(e)}
-                        required
                     />
                 </div>
                 <input
@@ -94,7 +89,8 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired, 
-}
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+};
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
