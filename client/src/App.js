@@ -19,6 +19,7 @@ if (localStorage.token) {
 }
 
 const App = () => {
+    // cDM
     useEffect(() => {
         store.dispatch(loadUser());
     }, []);
