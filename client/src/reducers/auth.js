@@ -5,7 +5,8 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL, 
-    LOGOUT
+    LOGOUT,
+    ACCOUNT_DELETED
 } from '../actions/types';
 
 const initialState = {
@@ -36,7 +37,8 @@ export default function authReducer(state = initialState, action) {
                 isAuthenticated: true,
                 loading: false,
             };
-
+        
+        case ACCOUNT_DELETED:
         case REGISTER_FAIL:
         case AUTH_ERROR:
         case LOGIN_FAIL:
