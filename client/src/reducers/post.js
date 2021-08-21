@@ -4,7 +4,9 @@ import {
     UPDATE_LIKES,
     DELETE_POST,
     ADD_POST,
-    GET_POST
+    GET_POST,
+    ADD_COMMENT,
+    REMOVE_COMMENT,
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +18,7 @@ const initialState = {
 
 export default function postReducer(state = initialState, action) {
     const { type, payload } = action;
-    
+
     switch (type) {
         case GET_POSTS:
             return {
@@ -28,7 +30,7 @@ export default function postReducer(state = initialState, action) {
         case ADD_POST:
             return {
                 ...state,
-                posts: [payload ,...state.posts],
+                posts: [payload, ...state.posts],
                 loading: false,
             };
 
@@ -38,7 +40,7 @@ export default function postReducer(state = initialState, action) {
                 posts: [...state.posts, payload],
                 loading: false,
             };
-        
+
         case GET_POST:
             return {
                 ...state,
@@ -69,6 +71,24 @@ export default function postReducer(state = initialState, action) {
                         : post
                 ),
                 loading: false,
+            };
+
+        case ADD_COMMENT:
+            return {
+                ...state,
+                post: { ...state.post, comments: payload },
+            };
+
+        case REMOVE_COMMENT:
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    comments: state.post.comments.filter(
+                        (comment) => comment._id !== payload
+                    ),
+                },
+                loading: false
             };
 
         default:

@@ -141,7 +141,7 @@ const EditProfile = ({
                         onChange={(e) => onChange(e)}
                     />
                     <small className='form-text'>
-                        City & state suggested (eg. Boston, MA)
+                        Where do you live
                     </small>
                 </div>
                 <div className='form-group'>
@@ -167,7 +167,7 @@ const EditProfile = ({
                     />
                     <small className='form-text'>
                         If you want your latest repos and a Github link, include
-                        your username
+                        your username (Not stable yet)
                     </small>
                 </div>
                 <div className='form-group'>
